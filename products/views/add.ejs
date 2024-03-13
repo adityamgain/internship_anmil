@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <form action="/add" method="POST" enctype="multipart/form-data">
+    <form action="/add/<%= storeName %>" method="POST" enctype="multipart/form-data">
     <div class="container-md ">
     <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -35,8 +35,14 @@
         <option value="electronics">Electronics</option>
         </select>
     </div>
+    <input type="hidden" name="bidding" value="false">
+    <div class="form-check form-check-reverse">
+        <input class="form-check-input" type="checkbox" value="true" id="bidding" name="bidding">
+        <label class="form-check-label" for="bidding">
+            Bidding Process
+        </label>
+    </div>
     <input type="file" name="image" accept="image/*">
-
         <button class="btn btn-success btn-lg btn-block">Add </button>
     </div>
     </form>

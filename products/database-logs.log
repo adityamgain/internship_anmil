@@ -1,0 +1,109 @@
+2024-03-01T04:06:00.694Z info: Inserted Product: jacket
+2024-03-01T04:08:47.595Z info: Inserted Product: Jordan
+2024-03-01T04:16:43.402Z error: Error deleting product: ReferenceError: product is not defined
+2024-03-01T04:17:43.764Z info: Deleted Product: Jordan
+2024-03-01T04:29:20.641Z info: User LoggedIn: abiral
+2024-03-04T13:54:09.206Z info: User LoggedIn: abiral
+2024-03-04T15:55:47.496Z info: User LoggedIn: abiral
+2024-03-04T17:11:01.772Z info: User LoggedIn: abiral
+2024-03-05T13:18:52.534Z info: User LoggedIn: abiral
+2024-03-05T13:35:19.978Z error: Error logging user: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+2024-03-05T13:36:17.493Z error: Error inserting store: error: syntax error at or near "//"
+2024-03-05T13:37:16.255Z error: Error inserting store: error: column "type" of relation "storelists" does not exist
+2024-03-05T13:37:19.468Z error: Error inserting store: error: column "type" of relation "storelists" does not exist
+2024-03-05T13:44:19.690Z info: User Registered: Aditya
+2024-03-05T13:44:33.647Z info: User LoggedIn: Aditya
+2024-03-05T13:44:54.801Z error: Error inserting store: error: column "type" of relation "storelists" does not exist
+2024-03-05T13:46:20.820Z info: User LoggedIn: Aditya
+2024-03-05T13:46:40.991Z error: Error inserting store: error: null value in column "user_id" of relation "storelists" violates not-null constraint
+2024-03-05T13:48:20.571Z info: User LoggedIn: Aditya
+2024-03-05T13:48:42.346Z info: Store Inserted: apple
+2024-03-05T15:51:36.336Z info: User LoggedIn: Aditya
+2024-03-05T15:52:04.259Z error: Error inserting product: ReferenceError: product is not defined
+2024-03-05T15:57:38.207Z info: User LoggedIn: Aditya
+2024-03-05T15:57:55.157Z error: Error inserting product: ReferenceError: product is not defined
+2024-03-05T16:00:35.477Z info: User LoggedIn: Aditya
+2024-03-05T16:00:54.266Z error: Error inserting product: ReferenceError: product is not defined
+2024-03-05T16:04:03.566Z info: User LoggedIn: Aditya
+2024-03-05T16:04:25.987Z info: Inserted Product: iPhone
+2024-03-05T16:06:59.034Z info: User LoggedIn: Aditya
+2024-03-05T16:08:27.371Z info: User LoggedIn: Aditya
+2024-03-05T16:22:00.887Z info: User LoggedIn: Aditya
+2024-03-05T16:25:12.328Z info: User LoggedIn: Aditya
+2024-03-05T16:29:04.465Z info: User LoggedIn: Aditya
+2024-03-05T16:36:33.260Z info: User LoggedIn: Aditya
+2024-03-05T16:36:54.634Z info: Inserted Product: iPhone
+2024-03-05T16:41:05.557Z info: User LoggedIn: Aditya
+2024-03-05T16:41:24.803Z info: Inserted Product: iPhone
+2024-03-05T16:42:17.380Z info: User LoggedIn: Aditya
+2024-03-05T16:42:35.500Z info: Inserted Product: iPhone
+2024-03-05T16:43:57.482Z info: User LoggedIn: Aditya
+2024-03-05T16:44:18.725Z info: Inserted Product: anijcec
+2024-03-05T16:46:02.785Z info: User LoggedIn: Aditya
+2024-03-05T16:46:21.238Z info: Inserted Product: irecec
+2024-03-05T16:48:36.473Z info: User LoggedIn: Aditya
+2024-03-05T16:48:52.305Z info: Inserted Product: vvevdv
+2024-03-05T16:49:55.476Z info: User LoggedIn: Aditya
+2024-03-05T16:50:14.556Z info: Inserted Product: iPhone
+2024-03-05T16:59:49.790Z info: User LoggedIn: Aditya
+2024-03-05T17:00:10.237Z info: Inserted Product: njcfec
+2024-03-05T17:02:16.902Z info: User LoggedIn: Aditya
+2024-03-05T17:02:40.104Z info: Inserted Product: efcefef
+2024-03-05T17:06:46.160Z info: User LoggedIn: Aditya
+2024-03-05T17:07:04.886Z info: Inserted Product: iPhone
+2024-03-05T17:10:26.919Z info: User LoggedIn: Aditya
+2024-03-05T17:10:47.838Z info: Inserted Product: iPhone
+2024-03-05T17:29:51.444Z info: User LoggedIn: Aditya
+2024-03-05T17:30:14.346Z info: Inserted Product: kjndsc
+2024-03-05T17:39:04.999Z info: User LoggedIn: Aditya
+2024-03-05T17:39:29.151Z info: Inserted Product: watch
+2024-03-05T17:53:05.508Z info: User LoggedIn: Aditya
+2024-03-05T17:53:34.507Z error: Error updating product: error: column "image_path" of relation "Products" does not exist
+2024-03-05T17:55:59.104Z info: User LoggedIn: Aditya
+2024-03-05T17:56:22.375Z error: Error updating product: error: column "image_path" of relation "Products" does not exist
+2024-03-05T17:58:01.888Z info: User LoggedIn: Aditya
+2024-03-05T17:58:20.513Z error: Error updating product: error: invalid input syntax for type integer: "electronics"
+2024-03-05T17:58:58.041Z error: Error updating product: error: invalid input syntax for type integer: "electronics"
+2024-03-05T17:59:10.864Z error: Error updating product: error: invalid input syntax for type integer: "clothing"
+2024-03-05T18:01:15.796Z info: User LoggedIn: Aditya
+2024-03-05T18:01:36.123Z error: Error updating product: error: null value in column "imagePath" of relation "Products" violates not-null constraint
+2024-03-05T18:04:03.976Z info: User LoggedIn: Aditya
+2024-03-05T18:04:23.188Z error: Error updating product: TypeError: Cannot read properties of undefined (reading 'path')
+2024-03-05T18:29:16.958Z info: User LoggedIn: Aditya
+2024-03-05T18:29:20.989Z info: Deleted Product: kjndsc
+2024-03-05T19:02:24.009Z info: User LoggedIn: Aditya
+2024-03-05T19:04:08.779Z info: User LoggedIn: Aditya
+2024-03-05T19:05:08.146Z info: User LoggedIn: Aditya
+2024-03-05T19:09:34.845Z info: User LoggedIn: Aditya
+2024-03-05T19:11:47.139Z info: User LoggedIn: Aditya
+2024-03-05T19:15:02.161Z info: User LoggedIn: Aditya
+2024-03-05T19:15:58.958Z info: User LoggedIn: Aditya
+2024-03-05T19:16:43.460Z info: User LoggedIn: Aditya
+2024-03-05T19:17:28.873Z info: User LoggedIn: Aditya
+2024-03-05T19:27:02.287Z info: User LoggedIn: Aditya
+2024-03-05T19:36:53.679Z info: User LoggedIn: Aditya
+2024-03-05T19:38:09.481Z info: User LoggedIn: Aditya
+2024-03-05T19:45:03.970Z info: User LoggedIn: Aditya
+2024-03-05T19:46:03.535Z info: User LoggedIn: Aditya
+2024-03-05T19:46:56.230Z info: User LoggedIn: Aditya
+2024-03-05T19:47:47.392Z info: User LoggedIn: Aditya
+2024-03-05T19:48:42.158Z info: User LoggedIn: Aditya
+2024-03-06T13:32:40.883Z info: User LoggedIn: Aditya
+2024-03-06T13:33:20.572Z error: Error updating product: TypeError: Cannot read properties of undefined (reading 'path')
+2024-03-06T14:17:40.751Z info: User LoggedIn: Aditya
+2024-03-06T14:18:01.280Z error: Error updating product: TypeError: Cannot read properties of undefined (reading 'path')
+2024-03-06T14:19:31.499Z info: User LoggedIn: Aditya
+2024-03-06T14:19:51.127Z error: Error updating product: ReferenceError: imagePath is not defined
+2024-03-06T14:24:29.068Z info: User LoggedIn: Aditya
+2024-03-06T14:25:08.432Z error: Error updating product: TypeError: Cannot read properties of undefined (reading 'path')
+2024-03-06T14:31:02.185Z info: User LoggedIn: Aditya
+2024-03-06T14:31:22.349Z error: Error updating product: error: null value in column "bidding" of relation "Products" violates not-null constraint
+2024-03-06T14:32:20.635Z info: User LoggedIn: Aditya
+2024-03-06T14:32:41.469Z info: Updated Product: tags
+2024-03-06T15:00:10.683Z info: User LoggedIn: Aditya
+2024-03-06T15:14:27.797Z info: User LoggedIn: Aditya
+2024-03-06T15:21:36.627Z info: User LoggedIn: Aditya
+2024-03-06T15:23:14.579Z info: User LoggedIn: Aditya
+2024-03-06T15:24:29.371Z info: User LoggedIn: Aditya
+2024-03-12T07:36:53.168Z info: User LoggedIn: Aditya
+2024-03-12T07:37:12.479Z info: Deleted Product: watch
