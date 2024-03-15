@@ -9,6 +9,15 @@
     "logging": false,
     "entities": [
        "src/entity/**/*.ts"
+<<<<<<< HEAD
+=======
+    ],
+    "migrations": [
+       "src/migration/**/*.ts"
+    ],
+    "subscribers": [
+       "src/subscriber/**/*.ts"
+>>>>>>> 0a65de1 (adding updates)
     ]
  }
  

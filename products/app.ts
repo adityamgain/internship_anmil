@@ -32,6 +32,7 @@ pool.connect((err, client, release) => {
     return console.error('Error acquiring client', err.stack);
   }
   console.log('Connected to PostgreSQL');
+<<<<<<< HEAD
   // You can execute queries with client.query() here
 
   // Remember to release the client
@@ -62,6 +63,11 @@ pool.connect((err, client, release) => {
 //   console.log("All models were synchronized successfully.");
 
 
+=======
+  release();
+});
+
+>>>>>>> 0a65de1 (adding updates)
 const port=3000;
 const app=express()
 
@@ -107,6 +113,7 @@ app.use('/', userRoutes);
 app.use('/', storeRoutes);
 app.use('/', adminRoutes);
 
+<<<<<<< HEAD
 // const storage = multer.diskStorage({
 //     destination: function(req, file, cb) {
 //         cb(null, 'uploads/'); 
@@ -443,6 +450,8 @@ app.use('/', adminRoutes);
 //             }
 //     }
 // })
+=======
+>>>>>>> 0a65de1 (adding updates)
 
 
 app.listen(port, () => {
