@@ -1,7 +1,7 @@
 import { createConnection } from "typeorm";
-import { Event } from "./models/eventlist";
-import { UserList } from "./models/userlist";
-import { Applicants } from "./models/applicant";
+import { Event } from "../models/eventlist";
+import { UserList } from "../models/userlist";
+import { Applicants } from "../models/applicant";
 import dotenv from "dotenv";
 
 dotenv.config();

@@ -8,8 +8,12 @@
     "skipLibCheck": true,                     
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,          
-    "emitDecoratorMetadata": true            
+    "emitDecoratorMetadata": true,
+    "removeComments": false            
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "src/types/swagger-ui-express.d.ts"
+  ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

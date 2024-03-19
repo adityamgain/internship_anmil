@@ -14,4 +14,7 @@ export class UserList {
     @Column({unique: true, nullable: false})
     email: string = "";
 
+    @Column({ default: false })
+    verifyEmail!: boolean;
+
 }

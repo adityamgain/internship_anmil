@@ -1,19 +1,22 @@
 const { getRepository } = require("typeorm");
-const express = require('express');
 import { Request, Response } from "express";
 import "reflect-metadata";
 const nodemailer = require("nodemailer");
 import dotenv from "dotenv";
 import { UserList } from "../models/userlist";
+// import jwt from "jsonwebtoken";
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mjml2html = require ('mjml');
-const app = express();
+import logger from "../utils/logger";
 
-export const registerpege = (req: Request,res: Response)=>{
+const secretKey = "password";
+
+export const registerpage = (req: Request,res: Response)=>{
     res.render('register');
   }
 
-export const register = async(req: Request,res: Response)=>{
+export const register = async (req: Request,res: Response)=>{
     try {
       const { name, password, email } = req.body;
       const userRepository = getRepository(UserList);
@@ -21,12 +24,23 @@ export const register = async(req: Request,res: Response)=>{
       if (userExists) {
         return res.send('user exists');
       }
-      const user = new UserList();
+      // const user = new UserList();
       const hashedPassword = await bcrypt.hash(password, 12);
-      user.name = name;
-      user.password = hashedPassword;
-      user.email = email;
+      const user = userRepository.create({
+        name: name,
+        password: hashedPassword,
+        email: email,
+        // Assuming there is a field to indicate whether the email is verified
+        emailVerified: false,
+      });
       await userRepository.save(user);
+
+      const verificationToken = jwt.sign(
+        { userId: user.id, email: user.email },
+        secretKey,
+        { expiresIn: '24h' } // Token expires in 24 hours
+      );
+      const verificationUrl = `http://localhost:3000/verify-email?token=${verificationToken}`;
       
       const mjmlTemplate = `
       <mjml>
@@ -35,7 +49,8 @@ export const register = async(req: Request,res: Response)=>{
             <mj-column>
               <mj-divider border-color="#F45E43"></mj-divider>
               <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hi ${name},</mj-text>
-              <mj-text>You have successfully been registered into our server. You will be receiving all the exciting event details and our announcements. Thank you for being a part of our family.</mj-text>
+              <mj-text>Please click the link below to verify your email address and complete your registration:</mj-text>
+              <mj-button href="${verificationUrl}">Verify Email</mj-button>
             </mj-column>
           </mj-section>
         </mj-body>
@@ -59,23 +74,46 @@ export const register = async(req: Request,res: Response)=>{
         const info = await transporter.sendMail({
           from: '"Event Handler 👻" <amgainaditya@gmail.com>', // sender address
           to: user.email, // list of receivers
-          subject: "Successfully Registered ✔", // Subject line
+          subject: "Email Verification Required", // Subject line
           html: htmlOutput,
         });
       }
       main().catch(console.error);
-      return res.redirect('/'); 
+      logger.info(`Verification Mail send successfully to: ${user.email}`);
     } catch (error) {
+      logger.error(`Error occurred: ${error}`);
       console.error("Failed to add event:", error);
       return res.status(500).send("An error occurred while adding the event.");
     }
   }
+
+  export const verifyEmail = async (req: Request, res: Response) => {
+    try {
+      const { token } = req.query;      
+      if (!token) {
+        return res.status(400).send('Verification failed. No token provided.');
+      }
+      const decoded = jwt.verify(token, secretKey);
+      const userId = decoded.userId;
+      const userRepository = getRepository(UserList);
+      const user = await userRepository.findOne({ where: { id: userId } });
+      if (!user) {
+        return res.status(404).send('User not found.');
+      }
+      user.verifyEmail = true;
+      await userRepository.save(user);
+      res.redirect('/')
+    } catch (error) {
+      logger.error(`Error occurred: ${error}`);
+      return res.send('An error occurred during email verification.');
+    }
+  };
   
   export const loginpage = (req: Request,res: Response)=>{
     res.render('login');
   }
 
-  export const login = async(req: Request,res: Response)=>{
+  export const login = async (req: Request,res: Response)=>{
     const { email, password } = req.body;
       try {
         const userRepository = getRepository(UserList);
@@ -88,12 +126,14 @@ export const register = async(req: Request,res: Response)=>{
           if (req.session) {
             req.session.userId = user.id;
         }
+        logger.info(`Logged In successfully: ${user.email}`);
         res.redirect('/');
       } else {
-          res.redirect('/login');
+        res.redirect('/login');
       }
     } catch (error) {
-        console.error('Error during login:', error);
+      logger.error(`Error occurred: ${error}`);
+      console.error('Error during login:', error);
     }
   }
 
