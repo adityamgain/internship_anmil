@@ -14,6 +14,9 @@ export class UserList {
     @Column({unique: true, nullable: false})
     email: string = "";
 
+    @Column({ nullable: true })
+    refreshtoken: string = "";
+
     @Column({ default: false })
     verifyEmail!: boolean;
 
