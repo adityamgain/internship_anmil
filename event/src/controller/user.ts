@@ -8,7 +8,7 @@ import { UserList } from "../models/userlist";
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mjml2html = require ('mjml');
-import {sendVerificationEmail} from "../utils/mail_template";
+// import {sendVerificationEmail} from "../utils/mail_template";
 import logger from "../utils/logger";
 
 const secretKey = "password";
@@ -42,20 +42,53 @@ export const register = async (req: Request,res: Response)=>{
         name: name,
         password: hashedPassword,
         email: email,
-        // Assuming there is a field to indicate whether the email is verified
-        // refreshtoken: ,
         emailVerified: false,
       });
-      await userRepository.save(user);
 
       const verificationToken = jwt.sign(
         { userId: user.id, email: user.email },
         secretKey,
         { expiresIn: '24h' } // Token expires in 24 hours
       );
+        user.refreshtoken= verificationToken;
+      await userRepository.save(user);
+
       // const verificationToken = jwt.sign({ email }, 'verificationSecret', { expiresIn: '24h' });
       const verificationUrl = `http://localhost:3000/verify-email?token=${verificationToken}`;
-      await sendVerificationEmail(name, user.email, verificationUrl);
+      // await sendVerificationEmail(name, user.email, verificationUrl);
+      // function sendVerificationEmail(name: string, email: string, verificationUrl: string) {
+        const mjmlTemplate = `
+        <mjml>
+          <mj-body>
+            <mj-section>
+              <mj-column>
+                <mj-divider border-color="#F45E43"></mj-divider>
+                <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hi ${name},</mj-text>
+                <mj-text>Please click the link below to verify your email address and complete your registration:</mj-text>
+                <mj-button href="${verificationUrl}">Verify Email</mj-button>
+              </mj-column>
+            </mj-section>
+          </mj-body>
+        </mjml>
+        `;
+        const htmlOutput = mjml2html(mjmlTemplate).html;
+      
+        const transporter = nodemailer.createTransport({
+          secure: true,
+          service: 'gmail',
+          auth: {
+            user: "amgainaditya@gmail.com",
+            pass: "mvijkryuemhwfsfy",
+          },
+        });
+      
+        transporter.sendMail({
+          from: '"Event Handler 👻" <amgainaditya@gmail.com>',
+          to: email,
+          subject: "Email Verification Required",
+          html: htmlOutput,
+        });
+      // }
       logger.info(`Verification Mail send successfully to: ${user.email}`);
     } catch (error) {
       logger.error(`Error occurred: ${error}`);
@@ -66,15 +99,16 @@ export const register = async (req: Request,res: Response)=>{
 
   export const verifyEmail = async (req: Request, res: Response) => {
     try {
-      const { refreshtoken } = req.query;      
-      if (!refreshtoken) {
+      const { token } = req.query;      
+      if (!token) {
         return res.status(400).send('Verification failed. No token provided.');
       }
-    //   if (verifyExpiration(refreshtoken)) {
-    //     db.authToken.destroy({ where: { id: refreshtoken.id } });
+    //   const expired = await isTokenExpired(token);
+    //   if (verifyExpiration(token)) {
+    //     db.authToken.destroy({ where: { id: token.id } });
     //     res.status(403).send("Refresh token was expired. Please make a new sign in request");
     // }
-      const decoded = jwt.verify(refreshtoken, secretKey);
+      const decoded = jwt.verify(token, secretKey);
       const userId = decoded.userId;
       const userRepository = getRepository(UserList);
       const user = await userRepository.findOne({ where: { id: userId } });

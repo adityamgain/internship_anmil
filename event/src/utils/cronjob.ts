@@ -33,7 +33,10 @@ async function getTodaysEvents() {
 }
 
 // 0 8 * * *
-cron.schedule("0 8 * * *", async () => {
+// */5 * * * *
+
+export async function cronjob() {
+cron.schedule("*/5 * * * *", async () => {
   const todaysEvents = await getTodaysEvents();
   if (todaysEvents.length > 0) {
     const emailBody = createEmailBody(todaysEvents);
@@ -53,4 +56,4 @@ cron.schedule("0 8 * * *", async () => {
     console.log("No events for today.");
   }
 });
-
+}
